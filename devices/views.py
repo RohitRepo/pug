@@ -38,32 +38,28 @@ def user_devices(request, format=None):
 @api_view(['POST'])
 def device_on(request, device_id):
     device = get_object_or_404(Device, id=device_id)
-
     if device.owner.id != request.user.id:
         raise PermissionDenied
 
     try:
         result = turn_device_on(device.id)
-
         if result:
             return Response()
-        return Response(status.HTTP_503_SERVICE_UNAVAILABLE)
+        return Response(status=status.HTTP_503_SERVICE_UNAVAILABLE)
     except:
-        return Response(status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @permission_classes((permissions.IsAuthenticated,))
 @api_view(['POST'])
 def device_off(request, device_id):
     device = get_object_or_404(Device, id=device_id)
-
     if device.owner.id != request.user.id:
         raise PermissionDenied
 
     try:
         result = turn_device_off(device.id)
-
         if result:
             return Response()
-        return Response(status.HTTP_503_SERVICE_UNAVAILABLE)
+        return Response(status=status.HTTP_503_SERVICE_UNAVAILABLE)
     except:
-        return Response(status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
