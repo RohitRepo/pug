@@ -36,6 +36,7 @@ body {
 .devices-section {
     width: 80%;
     max-width: 600px;
+    min-height: 400px;
     margin: 0 auto;
     margin-top: 50px;
     text-align: center;
@@ -46,4 +47,11 @@ body {
 
 .devices-section header {
     font-size: 1.5em;
+    margin: 10px;
+}
+
+.devices-section .devices-query,
+.devices-section .no-devices {
+    margin-top: 75px;
+    font-size: 1.2em;
 }

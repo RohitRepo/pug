@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ProfileApp">
 <head>
     <title>{{user.name}} - One more lazy thing</title>
 
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
     <link rel="stylesheet" type="text/css" href="/static/css/profile/main.css">
 </head>
-<body>
+<body ng-controller="profileController">
     <header class="profile-header">
         <div class="profile-picture" style="background-image: url(http://thecatapi.com/api/images/get?image_id={{image_id}}&size=small)"></div>
-        <!-- <img src="http://thecatapi.com/api/images/get?image_id=56&size=small"> -->
         <h2>{{user.name}}</h2>
     </header>
 
     <section class="devices-section">
-            <header>Your devices will appear here once you connect them to you wifi network</header>
-            <ul class="devices-list">
+            <header>Your devices will appear here once you connect them to your wifi network</header>
+
+            <div class="devices-query" ng-show="gettingDevices">
+                Gettting your devices......
+            </div>
+
+            <div class="no-devices" ng-show="noDevices">
+                We could not find any of your devices Bob :(
+            </div>
+
+            <ul class="devices-list" ng-cloak>
+                <li ng-cloak ng-repeat="device in devices">[[device.id]]</li>
             </ul>
     </section>
 
@@ -24,5 +33,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.min.js"></script>
+
+
+    <script type="text/javascript" src="/static/js/root/root.module.js"></script>
+    <script type="text/javascript" src="/static/js/models/model.module.js"></script>
+    <script type="text/javascript" src="/static/js/models/user.model.js"></script>
+    <script type="text/javascript" src="/static/js/models/device.model.js"></script>
+    <script type="text/javascript" src="/static/js/profile/profile.module.js"></script>
+    <script type="text/javascript" src="/static/js/profile/profile.controller.js"></script>
 </body>
 </html>

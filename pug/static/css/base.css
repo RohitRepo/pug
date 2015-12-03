@@ -41,7 +41,7 @@ html,body {
   height: 100%;
 }
 
-/*--------- Custom Scroll Bar*/
+/*--------- Custom Scroll Bar ----------*/
 
 ::-webkit-scrollbar {
     width: 15px;
@@ -64,4 +64,8 @@ html,body {
   ::-webkit-scrollbar-thumb {
       border: none;
   }
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
