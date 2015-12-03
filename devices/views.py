@@ -11,6 +11,7 @@ from rest_framework.exceptions import PermissionDenied
 from .models import Device
 from .serializers import DeviceSerializer
 from accounts.models import User
+from broker.api import turn_device_on, turn_device_off
 
 
 @permission_classes((permissions.AllowAny,))
@@ -41,10 +42,14 @@ def device_on(request, device_id):
     if device.owner.id != request.user.id:
         raise PermissionDenied
 
-    device.status = True
-    device.save()
-    serializer = DeviceSerializer(device)
-    return Response(serializer.data)
+    try:
+        result = turn_device_on(device.id)
+
+        if result:
+            return Response()
+        return Response(status.HTTP_503_SERVICE_UNAVAILABLE)
+    except:
+        return Response(status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @permission_classes((permissions.IsAuthenticated,))
 @api_view(['POST'])
@@ -54,7 +59,11 @@ def device_off(request, device_id):
     if device.owner.id != request.user.id:
         raise PermissionDenied
 
-    device.status = False
-    device.save()
-    serializer = DeviceSerializer(device)
-    return Response(serializer.data)
+    try:
+        result = turn_device_off(device.id)
+
+        if result:
+            return Response()
+        return Response(status.HTTP_503_SERVICE_UNAVAILABLE)
+    except:
+        return Response(status.HTTP_500_INTERNAL_SERVER_ERROR)

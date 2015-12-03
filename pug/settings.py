@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'core',
     'accounts',
     'devices',
+    'broker',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,3 +113,12 @@ STATICFILES_DIRS = (
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = '/home'
 LOGIN_URL = '/'
+
+
+UPDATE_TOPICS = "devices/updates/#"
+ACTION_TOPICS = "devices/actions/#"
+
+MQTT_SERVER = 'm11.cloudmqtt.com'
+MQTT_PORT = 16578
+MQTT_USER = 'server'
+MQTT_PASSWORD = 'sirnewton'
