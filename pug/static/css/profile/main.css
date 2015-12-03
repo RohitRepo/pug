@@ -1,0 +1,49 @@
+body {
+    background-image: url("http://designyoutrust.com/wp-content/uploads/2013/06/city-made-from-electronic-componets.jpg");
+    color: white;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.profile-header {
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.profile-header .profile-picture {
+    padding-top: 20px;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+}
+
+.profile-header h2 {
+    font-size: 3.2em;
+    letter-spacing: 1px;
+    font-weight: bold;
+    line-height: 1.5em;
+    padding-top: 20px;
+    color: #ffbf00;
+}
+
+.devices-section {
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    padding: 10px 20px;
+    color: #663300;
+    background-color: rgba(255, 191, 0, 0.8);
+}
+
+.devices-section header {
+    font-size: 1.5em;
+}

@@ -1,0 +1,80 @@
+body {
+    background-image: url("http://designyoutrust.com/wp-content/uploads/2013/06/city-made-from-electronic-componets.jpg");
+    color: white;
+    background-position: center;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.home-header {
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.home-header h1 {
+    font-size: 10em;
+    letter-spacing: 5px;
+    font-weight: bold;
+    line-height: 1.5em;
+    padding-top: 20px;
+    color: #c76605;
+}
+
+.home-header h2 {
+    font-size: 2.2em;
+    letter-spacing: 1px;
+    font-weight: bold;
+    line-height: 1.5em;
+    padding-top: 20px;
+    color: #ffbf00;
+}
+
+.auth {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.auth .auth-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.auth .auth-form input {
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-left: 10px;
+    border: none;
+    background-color: #c76605;
+    color: #ffbf00;
+}
+
+
+.auth .auth-form .input-error {
+    color: #ffbf00;
+    font-weight: bold;
+}
+
+.auth .auth-form .auth-action-button {
+    background: transparent;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    background-color: #ffbf00;
+    color: #c76605;
+    transition: all 0.5s;
+}
+
+.auth .auth-form .auth-action-button:hover {
+    background-color: #c76605;
+    color: #ffbf00;
+}

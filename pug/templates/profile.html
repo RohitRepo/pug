@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{user.name}} - One more lazy thing</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/profile/main.css">
+</head>
+<body>
+    <header class="profile-header">
+        <div class="profile-picture" style="background-image: url(http://thecatapi.com/api/images/get?image_id={{image_id}}&size=small)"></div>
+        <!-- <img src="http://thecatapi.com/api/images/get?image_id=56&size=small"> -->
+        <h2>{{user.name}}</h2>
+    </header>
+
+    <section class="devices-section">
+            <header>Your devices will appear here once you connect them to you wifi network</header>
+            <ul class="devices-list">
+            </ul>
+    </section>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.min.js"></script>
+</body>
+</html>

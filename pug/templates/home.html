@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="HomeApp">
+<head>
+    <title>PUG - One for the Lazy</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/home/main.css">
+</head>
+<body ng-controller="homeController">
+    <header class="home-header">
+        <h1>PUG</h1>
+        <h2>For the lazy we, who deserve more comfort</h2>
+    </header>
+
+    <section class="auth">
+            <form class="auth-form" name="authForm">
+
+                <input type="email" autofocus="autofocus" placeholder="E-mail" ng-model="user.email" name="uEmail" required ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"> <!-- ng-model-options="{ updateOn: 'blur' }" -->
+                <div class="input-error ng-hide" ng-cloak ng-show="authForm.uEmail.$dirty">
+                    <span ng-show="authForm.uEmail.$error.required">Please provide an email.</span>
+                    <span ng-show="authForm.uEmail.$error.email">This is not a valid email.</span>
+                </div>
+                <input type="password" placeholder="Password" ng-model="user.password" name="uPassword" required ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+                <div class="input-error ng-hide" ng-cloak ng-show="authForm.uPassword.$dirty">
+                    <span ng-show="authForm.uPassword.$error.required">Please provide a password.</span>
+                </div>
+                <input class="auth-action-button" ng-class="{'disabled': authForm.$invalid}" ng-disabled="authForm.$invalid"  type="button" name="login" value="LOGIN" ng-click="login()">
+
+                <div class="input-error ng-hide" ng-cloak ng-show="loginFailed">
+                    Login failed.
+                </div>
+            </form>
+    </section>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.min.js"></script>
+
+
+    <script type="text/javascript" src="/static/js/root/root.module.js"></script>
+    <script type="text/javascript" src="/static/js/models/model.module.js"></script>
+    <script type="text/javascript" src="/static/js/models/user.model.js"></script>
+    <script type="text/javascript" src="/static/js/home/home.module.js"></script>
+    <script type="text/javascript" src="/static/js/home/home.controller.js"></script>
+</body>
+</html>
