@@ -6,6 +6,42 @@ angular.module("ProfileApp")
             console.log("onConnectionLost:" + response.errorMessage);
         }
     };
+
+    function handle_update (response) {
+        for (i=0; i< $scope.devices.length; i++){
+
+            if ($scope.devices[i].id == response.id) {
+
+                $scope.$apply(function () {
+                    if (response.status == "on") {
+                        $scope.devices[i].status = true;
+                        $scope.devices[i].connected = true;
+                    } else if (response.status == "off") {
+                        $scope.devices[i].status = false;
+                        $scope.devices[i].connected = true;
+                    }
+                });
+                break;
+            }
+        }
+    };
+
+    function handle_last (topic, response) {
+        console.log("handle last");
+        var id = topic.substring(13,topic.length);
+
+        for (i=0; i< $scope.devices.length; i++){
+
+            if ($scope.devices[i].id == id) {
+
+                $scope.$apply(function () {
+                    $scope.devices[i].connected = false;
+                });
+                break;
+            }
+        }
+    };
+
     function onMessageArrived (message) {
         var messageObj = {
             'topic': message.destinationName,
@@ -14,21 +50,15 @@ angular.module("ProfileApp")
             'payload': message.payloadString,
         };
 
+        console.log("got message", messageObj);
+
         var response = jQuery.parseJSON(message.payloadString);
+        var topic = message.destinationName;
 
-        for (i=0; i< $scope.devices.length; i++){
-
-            if ($scope.devices[i].id == response.id) {
-
-                $scope.$apply(function () {
-                    if (response.status == "on") {
-                        $scope.devices[i].status = true;
-                    } else if (response.status == "off") {
-                        $scope.devices[i].status = false;
-                    }
-                });
-                break;
-            }
+        if (topic.startsWith("devices/updates")) {
+            handle_update(response);
+        } else if (topic.startsWith("devices/last")) {
+            handle_last_will(topic, response);
         }
     };
 
@@ -41,6 +71,7 @@ angular.module("ProfileApp")
 
         for (i=0; i< $scope.devices.length; i++){
             client.subscribe("devices/updates/" + $scope.devices[i].id, {qos: 1})
+            client.subscribe("devices/last/" + $scope.devices[i].id, {qos: 1})
         }
     };
 
