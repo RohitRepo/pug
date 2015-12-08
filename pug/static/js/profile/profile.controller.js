@@ -7,19 +7,37 @@ angular.module("ProfileApp")
         }
     };
 
-    function handle_update (response) {
+    function handle_update (topic, response) {
+        console.log("handle update", {topic: topic, response: response})
+        var id = topic.substring(16,topic.length);
+        console.log("got id:", id);
+
         for (i=0; i< $scope.devices.length; i++){
 
-            if ($scope.devices[i].id == response.id) {
+            if ($scope.devices[i].id == id) {
 
                 $scope.$apply(function () {
-                    if (response.status == "on") {
+                    if (response == "on") {
                         $scope.devices[i].status = true;
                         $scope.devices[i].connected = true;
-                    } else if (response.status == "off") {
+                    } else if (response == "off") {
                         $scope.devices[i].status = false;
                         $scope.devices[i].connected = true;
                     }
+                });
+                break;
+            }
+        }
+    };
+
+    function handle_connect (topic, response) {
+        var id = topic.substring(17,topic.length);
+        for (i=0; i< $scope.devices.length; i++){
+
+            if ($scope.devices[i].id == id) {
+
+                $scope.$apply(function () {
+                    $scope.devices[i].connected = true;
                 });
                 break;
             }
@@ -52,17 +70,19 @@ angular.module("ProfileApp")
 
         console.log("got message", messageObj);
 
-        var response = jQuery.parseJSON(message.payloadString);
+        // var response = jQuery.parseJSON();
         var topic = message.destinationName;
 
         if (topic.startsWith("devices/updates")) {
-            handle_update(response);
+            handle_update(topic, message.payloadString);
         } else if (topic.startsWith("devices/last")) {
-            handle_last_will(topic, response);
+            handle_last_will(topic, message.payloadString);
+        } else if (topic.startsWith("devices/connects")) {
+            handle_connect(topic, message.payloadString);
         }
     };
 
-    var client = new Paho.MQTT.Client('m11.cloudmqtt.com', 36578, clientId='');
+    var client = new Paho.MQTT.Client('m11.cloudmqtt.com', 32911, clientId='');
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
 
@@ -72,6 +92,7 @@ angular.module("ProfileApp")
         for (i=0; i< $scope.devices.length; i++){
             client.subscribe("devices/updates/" + $scope.devices[i].id, {qos: 1})
             client.subscribe("devices/last/" + $scope.devices[i].id, {qos: 1})
+            client.subscribe("devices/connects/" + $scope.devices[i].id, {qos: 1})
         }
     };
 

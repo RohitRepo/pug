@@ -118,8 +118,9 @@ LOGIN_URL = '/'
 UPDATE_TOPICS = "devices/updates/#"
 ACTION_TOPICS = "devices/actions/#"
 LAST_WILL_TOPICS = "devices/last/#"
+CONNECT_TOPICS = "devices/connects/#"
 
 MQTT_SERVER = 'm11.cloudmqtt.com'
-MQTT_PORT = 16578
+MQTT_PORT = 12911
 MQTT_USER = 'server'
 MQTT_PASSWORD = 'sirnewton'
