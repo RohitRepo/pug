@@ -33,38 +33,15 @@
 
 // Update these with values suitable for your network.
 
-const char* ssid = "BEAM492148";
-const char* password = "59549229";
 const char* mqtt_server = "m11.cloudmqtt.com";
 int device_id = 1;
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-long lastMsg = 0;
-char msg[50];
+
 char target_topic[30];
-int value = 0;
 
 void setup_wifi() {
-
-//  delay(10);
-//  // We start by connecting to a WiFi network
-//  Serial.println();
-//  Serial.print("Connecting to ");
-//  Serial.println(ssid);
-//
-//  WiFi.begin(ssid, password);
-//
-//  while (WiFi.status() != WL_CONNECTED) {
-//    delay(500);
-//    Serial.print(WiFi.status());
-//    Serial.print(".");
-//  }
-//
-//  Serial.println("");
-//  Serial.println("WiFi connected");
-//  Serial.println("IP address: ");
-//  Serial.println(WiFi.localIP());
     WiFiManager wifi;
     wifi.autoConnect("ALAZYPUG");
 }
@@ -153,14 +130,4 @@ void loop() {
     reconnect();
   }
   client.loop();
-
-//  long now = millis();
-//  if (now - lastMsg > 10000) {
-//    lastMsg = now;
-//    ++value;
-//    snprintf (msg, 75, "hello world #%ld", value);
-//    Serial.print("Publish message: ");
-//    Serial.println(msg);
-//    client.publish("devices/updates/1", msg);
-//  }
 }
