@@ -6,7 +6,7 @@ from django.contrib import admin
 urlpatterns = patterns('',
                       url(r'^admin/', include(admin.site.urls)),
                       url(r'^$', 'accounts.clientViews.site_main', name='home'),
-                      url(r'^home$', 'accounts.clientViews.user_profile', name="profile"),
+                      url(r'^home', 'accounts.clientViews.user_profile', name="profile"),
                )
 
 

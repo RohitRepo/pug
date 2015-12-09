@@ -72,6 +72,8 @@ def check_device_code(request):
 
     if serializer.is_valid():
         data = serializer.validated_data
+        device_id = data['device_id']
+
         try:
             device = Device.objects.get(device_id=device_id)
         except Device.DoesNotExist:

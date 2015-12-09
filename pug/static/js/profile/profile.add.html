@@ -1,0 +1,25 @@
+<section class="add-device">
+
+    <header>Add a new device</header>
+
+    <form class="add-device-form" name="newDeviceForm">
+
+        <input type="text" autofocus="autofocus" placeholder="Device Id" ng-model="device.device_id" name="uDeviceId" required ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+        <div class="input-error ng-hide" ng-cloak ng-show="newDeviceForm.uDeviceId.$dirty">
+            <span ng-show="newDeviceForm.uDeviceId.$error.required">Please provide Device Id.</span>
+        </div>
+
+        <input type="text" placeholder="Code" ng-model="device.code" name="uCode" required ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+        <div class="input-error ng-hide" ng-cloak ng-show="newDeviceForm.uCode.$dirty">
+            <span ng-show="newDeviceForm.uCode.$error.required">Please provide validation code.</span>
+        </div>
+
+        <input class="add-device-button" ng-class="{'active': newDeviceForm.$valid}" ng-disabed="newDeviceForm.$invalid"  type="button" name="validate" value="VALIDATE" ng-click="addDevice()">
+
+        <div class="input-error ng-hide" ng-cloak ng-show="validationFailed">
+            [[validationError]]
+        </div>
+
+    </form>
+
+</section>

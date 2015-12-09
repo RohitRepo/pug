@@ -11,7 +11,7 @@ class DeviceModel(BaseModel):
     def check_validation_code(self, code):
         return DeviceValidation.objects.filter(
             device_id=self.device_id,
-            code=code).exists()
+            code=self.code).exists()
 
     class Meta:
         abstract = True

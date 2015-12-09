@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Device
+from .models import Device, DeviceValidation
 
 class DeviceSerializer(serializers.ModelSerializer):
     user_token = serializers.CharField(max_length=20, write_only=True)
@@ -16,6 +16,6 @@ class DeviceSerializer(serializers.ModelSerializer):
 class ValidationSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Device
+        model = DeviceValidation
         fields = ('id', 'device_id', 'code')
         write_only_fields = ('id', 'device_id', 'code')

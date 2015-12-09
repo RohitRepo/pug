@@ -3,6 +3,8 @@
 <head>
     <title>{{user.name}} - One more lazy thing</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/home/">
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
     <link rel="stylesheet" type="text/css" href="/static/css/profile/main.css">
 </head>
@@ -12,28 +14,23 @@
         <h2>{{user.name}}</h2>
     </header>
 
-    <section class="devices-section">
+    <nav class="profile-navigation">
+        <a class="profile-link" ui-sref-active="active" ui-sref="devices">
+            DEVICES
+        </a><!--
+        --><a class="profile-link" ui-sref-active="active" ui-sref="add">
+            ADD DEVICE
+        </a>
+    </nav>
 
-            <div class="devices-query ng-hide" ng-cloak ng-show="gettingDevices">
-                Gettting your devices......
-            </div>
-
-            <header class="ng-hide" ng-cloak ng-show="noDevices">Your devices will appear here once you connect them to your wifi network</header>
-            <div class="no-devices ng-hide" ng-cloak ng-show="noDevices">
-                We could not find any of your devices Bob :(
-            </div>
-
-            <header class="ng-hide" ng-cloak ng-show="devices.length > 0">Tap the device to toggle</header>
-            <article class="device" ng-class="{'active': device.connected}" ng-cloak ng-repeat="device in devices" ng-style="{'background-color': getBackground(device)}" ng-click="toggleDevice(device)">
-                <span>[[device.id]] : [[getDeviceStatus(device)]]</span>
-            </article>
-    </section>
-
+    <div ui-view></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.7/release/angular-ui-router.js"></script>
 
     <script type="text/javascript" src="/static/js/vendor/paho/mqttws31.js"></script>
 
@@ -43,5 +40,7 @@
     <script type="text/javascript" src="/static/js/models/device.model.js"></script>
     <script type="text/javascript" src="/static/js/profile/profile.module.js"></script>
     <script type="text/javascript" src="/static/js/profile/profile.controller.js"></script>
+    <script type="text/javascript" src="/static/js/profile/profile.devices.controller.js"></script>
+    <script type="text/javascript" src="/static/js/profile/profile.add.controller.js"></script>
 </body>
 </html>

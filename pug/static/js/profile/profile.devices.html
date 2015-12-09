@@ -1,0 +1,16 @@
+<section class="devices-section">
+
+        <div class="devices-query ng-hide" ng-cloak ng-show="gettingDevices">
+            Gettting your devices......
+        </div>
+
+        <header class="ng-hide" ng-cloak ng-show="noDevices">Your devices will appear here once you connect them to your wifi network</header>
+        <div class="no-devices ng-hide" ng-cloak ng-show="noDevices">
+            We could not find any of your devices Bob :(
+        </div>
+
+        <header class="ng-hide" ng-cloak ng-show="devices.length > 0">Tap the device to toggle</header>
+        <article class="device" ng-class="{'active': device.connected}" ng-cloak ng-repeat="device in devices" ng-style="{'background-color': getBackground(device)}" ng-click="toggleDevice(device)">
+            <span>[[device.id]] : [[getDeviceStatus(device)]]</span>
+        </article>
+</section>
