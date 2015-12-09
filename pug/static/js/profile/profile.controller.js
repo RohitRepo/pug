@@ -90,9 +90,9 @@ angular.module("ProfileApp")
         console.log("Client connected");
 
         for (i=0; i< $scope.devices.length; i++){
-            client.subscribe("devices/updates/" + $scope.devices[i].id, {qos: 1})
-            client.subscribe("devices/last/" + $scope.devices[i].id, {qos: 1})
-            client.subscribe("devices/connects/" + $scope.devices[i].id, {qos: 1})
+            client.subscribe("devices/updates/" + $scope.devices[i].device_id, {qos: 1})
+            client.subscribe("devices/last/" + $scope.devices[i].device_id, {qos: 1})
+            client.subscribe("devices/connects/" + $scope.devices[i].device_id, {qos: 1})
         }
     };
 

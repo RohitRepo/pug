@@ -32,5 +32,18 @@ angular.module("module.model")
         });
     };
 
+    service.validate = function (device_id, code) {
+        return $http({method: 'POST', url: baseUrl + 'validate'}, data={
+            device_id: device_id,
+            code: code
+        })
+        .success(function (response) {
+            return response;
+        })
+        .error(function (response, status) {
+            return $q.reject(status);
+        });
+    };
+
     return service;
 }]);

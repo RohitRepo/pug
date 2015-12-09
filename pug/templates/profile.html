@@ -26,7 +26,6 @@
             <header class="ng-hide" ng-cloak ng-show="devices.length > 0">Tap the device to toggle</header>
             <article class="device" ng-class="{'active': device.connected}" ng-cloak ng-repeat="device in devices" ng-style="{'background-color': getBackground(device)}" ng-click="toggleDevice(device)">
                 <span>[[device.id]] : [[getDeviceStatus(device)]]</span>
-                <!-- getBackground(device) -->
             </article>
     </section>
 

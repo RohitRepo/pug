@@ -6,9 +6,16 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Device
-        fields = ('id', 'owner', 'ip', 'status', 'connected', 'user_token')
-        read_only_fields = ('id', 'owner', 'status', 'connected')
+        fields = ('id', 'device_id', 'owner', 'ip', 'status', 'connected', 'user_token')
+        read_only_fields = ('id', 'device_id', 'owner', 'status', 'connected')
 
     def create(self, validated_data):
         validated_data.pop('user_token', None)
         return Device.objects.create(**validated_data)
+
+class ValidationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Device
+        fields = ('id', 'device_id', 'code')
+        write_only_fields = ('id', 'device_id', 'code')

@@ -7,6 +7,7 @@ from . import views
 urlpatterns = patterns('',
                       url(r'^$', 'devices.views.add_device'),
                       url(r'^/my$', 'devices.views.user_devices'),
+                      url(r'^/validate$', 'devices.views.check_device_code'),
                       url(r'^/(?P<device_id>[0-9]+)/turn_on$', 'devices.views.device_on'),
                       url(r'^/(?P<device_id>[0-9]+)/turn_off$', 'devices.views.device_off'),
                     )
