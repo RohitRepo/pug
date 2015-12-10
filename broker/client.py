@@ -22,6 +22,8 @@ def process_connects(client, userdata, msg):
 
     if not device:
         print "Could not find a valid device for id: " + device_id
+        device = DeviceTemp()
+        device.device_id = device_id
 
     device.connected = True
     device.ip = msg.payload;
@@ -34,6 +36,7 @@ def process_updates(client, userdata, msg):
 
     if not device:
         print "Could not find a valid device for id: " + device_id
+        return
         
     if msg.payload == 'on':
         device.status = True
@@ -51,6 +54,7 @@ def process_last_wills(client, userdata, msg):
 
     if not device:
         print "Could not find a valid device for id: " + device_id
+        return
 
     device.connected = False;
     device.save()
@@ -81,5 +85,5 @@ mqttc.message_callback_add(settings.CONNECT_TOPICS, process_connects)
 mqttc.message_callback_add(settings.LAST_WILL_TOPICS, process_last_wills)
 
 mqttc.username_pw_set(settings.MQTT_USER, settings.MQTT_PASSWORD)
-# mqttc.loop_start()
-# mqttc.connect(settings.MQTT_SERVER, settings.MQTT_PORT, 60)
+mqttc.loop_start()
+mqttc.connect(settings.MQTT_SERVER, settings.MQTT_PORT, 60)

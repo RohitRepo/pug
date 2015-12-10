@@ -89,7 +89,8 @@ def check_device_code(request):
 
                 serializer = DeviceSerializer(device)
             elif isinstance(device, DeviceTemp):
-                new_device = device.create_device()
+                new_device = device.generate_device()
+                new_device.owner = request.user
                 new_device.save()
 
                 device.processed = True

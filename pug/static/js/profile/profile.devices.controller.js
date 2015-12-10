@@ -14,7 +14,7 @@ angular.module("ProfileApp")
 
         for (i=0; i< $scope.devices.length; i++){
 
-            if ($scope.devices[i].id == id) {
+            if ($scope.devices[i].device_id == id) {
 
                 $scope.$apply(function () {
                     if (response == "on") {
@@ -34,7 +34,7 @@ angular.module("ProfileApp")
         var id = topic.substring(17,topic.length);
         for (i=0; i< $scope.devices.length; i++){
 
-            if ($scope.devices[i].id == id) {
+            if ($scope.devices[i].device_id == id) {
 
                 $scope.$apply(function () {
                     $scope.devices[i].connected = true;
@@ -44,13 +44,13 @@ angular.module("ProfileApp")
         }
     };
 
-    function handle_last (topic, response) {
+    function handle_last_will (topic, response) {
         console.log("handle last");
         var id = topic.substring(13,topic.length);
 
         for (i=0; i< $scope.devices.length; i++){
 
-            if ($scope.devices[i].id == id) {
+            if ($scope.devices[i].device_id == id) {
 
                 $scope.$apply(function () {
                     $scope.devices[i].connected = false;

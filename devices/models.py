@@ -11,7 +11,7 @@ class DeviceModel(BaseModel):
     def check_validation_code(self, code):
         return DeviceValidation.objects.filter(
             device_id=self.device_id,
-            code=self.code).exists()
+            code=code).exists()
 
     class Meta:
         abstract = True
@@ -25,10 +25,10 @@ class DeviceTemp(DeviceModel):
 
     def generate_device(self):
         return Device(
-            ip = ip,
-            device_id = device_id,
-            status = status,
-            connected = connected
+            ip = self.ip,
+            device_id = self.device_id,
+            status = self.status,
+            connected = self.connected
         )
 
 class DeviceValidation(BaseModel):
