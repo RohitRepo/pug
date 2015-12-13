@@ -12,7 +12,7 @@ const char* MQTT_SERVER = "m11.cloudmqtt.com";
 const int MQTT_PORT = 12911;
 const char* MQTT_USER = "device";
 const char* MQTT_PASSWORD = "thelazypug";
-const int device_id = 123;
+const char* DEVICE_ID = "345";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -75,11 +75,11 @@ void setStatus(String s) {
 
 void setup_wifi() {
     WiFiManager wifi;
-    wifi.autoConnect("ALAZYPUG");
+    wifi.autoConnect("A-LAZY-PUG");
 }
 
 void publish_update() {
-  sprintf(target_topic, "devices/updates/%d", device_id);
+  sprintf(target_topic, "devices/updates/%s", DEVICE_ID);
   Serial.println("Publish update: ");
   Serial.println(device_status);
   Serial.println(target_topic);
@@ -131,7 +131,7 @@ void setup() {
 void publish_connect() {
   Serial.println("connected");
   
-  sprintf(target_topic, "devices/connects/%d", device_id);
+  sprintf(target_topic, "devices/connects/%s", DEVICE_ID);
   Serial.println("Publish connect to");
   Serial.println(target_topic);
 
@@ -143,7 +143,7 @@ void publish_connect() {
 }
 
 void subscribe_topics() {
-  sprintf(target_topic, "devices/actions/%d", device_id);
+  sprintf(target_topic, "devices/actions/%s", DEVICE_ID);
       
   Serial.println("Subscribe to");
   Serial.println(target_topic);
@@ -155,8 +155,8 @@ void mqtt_reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    sprintf(target_topic, "devices/last/%d", device_id);
-    if (client.connect("ESP8266Client", MQTT_USER, MQTT_PASSWORD, target_topic, 1, 0, "")) {
+    sprintf(target_topic, "devices/last/%s", DEVICE_ID);
+    if (client.connect(DEVICE_ID, MQTT_USER, MQTT_PASSWORD, target_topic, 1, 0, "")) {
       publish_connect();
       publish_update();
       subscribe_topics();
