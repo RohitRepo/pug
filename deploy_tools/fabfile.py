@@ -12,8 +12,6 @@ def deploy():
     _get_latest_source(source_folder)
     _update_settings(source_folder, 'masterpeace.in')
     _update_virtualenv(source_folder)
-    _update_bower(source_folder)
-    _build_client(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
     _restart_service()
@@ -55,12 +53,6 @@ def _update_virtualenv(source_folder):
         run('virtualenv %s --no-site-packages' % (virtualenv_folder,))
     run('%s/bin/pip install -r %s/deploy_tools/requirements.txt' % (
         virtualenv_folder, source_folder))
-
-def _update_bower(source_folder):
-    run('cd %s/pug/static && bower install' % (source_folder, ))
-
-def _build_client(source_folder):
-    run('cd %s/pug && npm install && grunt build' % (source_folder,))
 
 
 def _update_static_files(source_folder):
